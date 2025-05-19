@@ -2,19 +2,16 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from Class.logs import write_log, write_exeption
+from Class.logs import write_exeption
 
 def show_dataset(data : np.ndarray, answer  : np.ndarray):
     try:
         for i in range(len(data)):
             a,b,c,d = data[i]
             print( f"{a} {b} {c} {d} |{answer[i]}")
-        write_log("Class.Paint_data.show_dataset")
     except Exception as e:
         write_exeption("Class.Paint_data.show_dataset", str(e))
         raise Exception("Can not show data")
-    
-
 
 def plot_pairplot(dataset : np.ndarray, X : np.ndarray, Y : np.ndarray):
     try:
@@ -23,12 +20,13 @@ def plot_pairplot(dataset : np.ndarray, X : np.ndarray, Y : np.ndarray):
         print(df)
         sns.pairplot(df, hue = "target")
         plt.show()
-        
+        plt.savefig("images\\Classes.png")
+        plt.close()
     except Exception as e:
         write_exeption("Class.Paint_data.plot_loo_error", str(e))
         raise Exception("Can not show data")
 
-def plot_loo_error(k_vals):
+def plot_loo_error(k_vals : list):
     try:
         plt.bar(range(1, len(k_vals) + 1), k_vals)
         plt.xlabel("k")
@@ -37,8 +35,8 @@ def plot_loo_error(k_vals):
         for i, val in enumerate(k_vals):   # получаем и индекс и значение 
                 plt.text(i + 1, val, str(val), ha = "center", va = "bottom", fontsize = 8)
         plt.show()
+        plt.savefig("images\\LOO_Error_vs_k.png")
         plt.close()
-        write_log("Class.Paint_data.plot_loo_error")
     except Exception as e:
         write_exeption("Class.Paint_data.plot_loo_error", str(e))
         raise Exception("Can not show data")
