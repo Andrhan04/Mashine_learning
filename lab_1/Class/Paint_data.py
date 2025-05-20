@@ -19,8 +19,8 @@ def plot_pairplot(dataset : np.ndarray, X : np.ndarray, Y : np.ndarray):
         df["target"] = [dataset.target_names[i] for i in Y]
         print(df)
         sns.pairplot(df, hue = "target")
-        plt.show()
         plt.savefig("images\\Classes.png")
+        plt.show()
         plt.close()
     except Exception as e:
         write_exeption("Class.Paint_data.plot_loo_error", str(e))
@@ -34,8 +34,8 @@ def plot_loo_error(k_vals : list):
         plt.title("LOO Error vs k")
         for i, val in enumerate(k_vals):   # получаем и индекс и значение 
                 plt.text(i + 1, val, str(val), ha = "center", va = "bottom", fontsize = 8)
-        plt.show()
         plt.savefig("images\\LOO_Error_vs_k.png")
+        plt.show()
         plt.close()
     except Exception as e:
         write_exeption("Class.Paint_data.plot_loo_error", str(e))
