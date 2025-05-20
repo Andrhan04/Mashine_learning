@@ -16,7 +16,11 @@
 
 
 <h2> Пропиши </h2> 
+
 py -m venv myvenv
+
 myvenv\Scripts\activate
+
 pip install numpy scikit-learn pandas sklearn
+
 deactivate
