@@ -1,6 +1,7 @@
 import numpy as np
 import Class.kernel as kern
 from Class.logs import write_exeption
+
 def find_label(obj : dict):
 	try:
 		most_common_label = None
