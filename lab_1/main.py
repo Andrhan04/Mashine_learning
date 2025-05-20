@@ -2,7 +2,7 @@ import numpy as np
 import Class.Paint_data as painter
 import Class.load_data as loader
 import Class.Classification as cls
-import Class.cross_validation as Validation
+import Class.generalizing_ability as Validation
 
 X,Y,iris  =  loader.give_iris()
 painter.show_dataset(X, Y)
