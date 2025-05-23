@@ -32,7 +32,7 @@ print(f"KNN с весами говорит: { x_my } это - { y_knn_2 }")
 if y_knn_1 == y_my and y_knn_2 != y_my:
         print("KNN прав!")
 elif y_knn_2 == y_my and y_knn_1 != y_my:
-        print("KNN прав!")
+        print("KNN c весами прав!")
 elif y_knn_1 == y_my and y_knn_2 == y_my:
         print("Оба правы!")
 else:

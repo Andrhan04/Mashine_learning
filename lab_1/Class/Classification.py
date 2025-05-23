@@ -24,11 +24,8 @@ def find_label(obj : dict):
 def KNN(x_train : list, x_test : list, y_train : list, k : int):
 	try:
 		dist : list = [kern.evc_distance(x_test, x) for x in x_train]
-		# print(dist)
 		neighbors = np.argsort(dist)[:k]   # получение индексов элементов массива, отсортированных по возрастанию со срезом в k
-		# print(neighbors)
 		labels = [y_train[i] for i in neighbors]
-		# print(labels)
 
 		label_cnt : dict = {}
 		for label in labels:
@@ -45,11 +42,8 @@ def KNN(x_train : list, x_test : list, y_train : list, k : int):
 def KNN_with_weight(x_train : list, x_test : list, y_train : list, k : int):
 	try:
 		dist : list = [kern.evc_distance(x_test, x) for x in x_train]
-		# print(dist)
 		neighbors : list = np.argsort(dist)[:k]
-		# weights = [kern.epanechnikov_kernel(d) for d in dist]
 		weights = [kern.epanechnikov_kernel(d / kern.evc_distance(x_test, x_train[k + 1])) for d in dist]
-		# print(weights) 
 
 		class_weights : dict = {}
 		for i in neighbors:
