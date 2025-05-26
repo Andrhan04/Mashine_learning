@@ -1,0 +1,2 @@
+{"Function": "Class.Classification.find_label", "Exept": "cannot unpack non-iterable numpy.int32 object", "time": "11:41:35.150148"}
+{"Function": "Class.Classification.KNN", "Exept": "Can not find label", "time": "11:41:35.152387"}
