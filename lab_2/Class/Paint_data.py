@@ -40,3 +40,12 @@ def plot_loo_error(k_vals : list):
     except Exception as e:
         write_exeption("Class.Paint_data.plot_loo_error", str(e))
         raise Exception("Can not show data")
+
+def plot_Kmens(X, labels, centers,k):
+    plt.figure(figsize=(8, 6))
+    colors = ['red', 'green', 'blue', 'cyan', 'magenta', 'yellow']
+    for i in range(k):
+        plt.scatter(X[labels == i][:, 0], X[labels == i][:, 1], color=colors[i % 6])
+    plt.scatter(centers[:, 0], centers[:, 1], color='black', marker='X')
+    plt.savefig(f"images\\Classters_{k}.png")
+    plt.show()
