@@ -9,7 +9,6 @@ X = iris.data.features.values
 k = 3
 #k = int(input("Count clusters: "))
 labels, centers, qual = cls.KMeans(X, k)
-
 print(f"Quality: {qual}")
 for i in range(len(centers)):
     print(f"Centre {i}: {centers[i]}")

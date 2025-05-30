@@ -46,6 +46,8 @@ def plot_Kmens(X, labels, centers,k):
     colors = ['red', 'green', 'blue', 'cyan', 'magenta', 'yellow']
     for i in range(k):
         plt.scatter(X[labels == i][:, 0], X[labels == i][:, 1], color=colors[i % 6])
-    plt.scatter(centers[:, 0], centers[:, 1], color='black', marker='X')
+    plt.scatter(centers[:, 0], centers[:, 1], color='black', marker='X', linewidths = 1, s=200) 
+    plt.xlabel("sepal length")
+    plt.ylabel("sepal width")
     plt.savefig(f"images\\Classters_{k}.png")
     plt.show()
