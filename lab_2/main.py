@@ -1,4 +1,3 @@
-import numpy as np
 import Class.Paint_data as painter
 from ucimlrepo import fetch_ucirepo
 import Class.Claster as cls
