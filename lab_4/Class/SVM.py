@@ -3,7 +3,7 @@ from sklearn.metrics import accuracy_score
 
 def model(X_train, X_test, Y_train, Y_test, C_arr):
     # обучает и тестирует модели логистической регрессии и линейного svm для каждого значения C
-    svc_acc, svc_coefs = [], []
+    acc, coef = [], []
 
     for C in C_arr:
         svc = LinearSVC(C = C, max_iter = 10000).fit(X_train, Y_train)
@@ -18,7 +18,7 @@ def model(X_train, X_test, Y_train, Y_test, C_arr):
         # Итеративно обновляет коэффициенты, пока не сойдётся
         # В результате model.coef_, model.intercept_ и classes_
 
-        svc_acc.append(accuracy_score(Y_test, svc.predict(X_test)))
+        acc.append(accuracy_score(Y_test, svc.predict(X_test)))
 
         # Внутри predict 
         # Счёт уверенности (scores = self.decision_function(X))
@@ -26,6 +26,6 @@ def model(X_train, X_test, Y_train, Y_test, C_arr):
         # Преобразование индексов в реальные метки
 
         svc_weights = svc.coef_[0]
-        svc_coefs.append(svc_weights)
+        coef.append(svc_weights)
 
-    return svc_acc, svc_coefs
+    return acc, coef

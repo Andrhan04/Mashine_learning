@@ -2,13 +2,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def plot_accuracy(C_arr, log_acc, svc_acc):
-    # строит график зависимости accuracy от параметра регуляризации C
-    plt.plot(C_arr, log_acc, label = 'LogReg', marker = 'o')
-    plt.plot(C_arr, svc_acc, label = 'LinSVC', marker = 'x')
+    # строит график зависимости точности от параметра регуляризации C
+    plt.plot(C_arr, log_acc, label = 'Логистическая', marker = 'o')
+    plt.plot(C_arr, svc_acc, label = 'SVM', marker = 'x')
 
     plt.xscale('log')
     plt.xlabel('C')
-    plt.ylabel('Accuracy')
+    plt.ylabel('Точность')
     plt.title('Точность при C')
     plt.legend()
     plt.savefig("images\\accuracy.png")
@@ -26,5 +26,5 @@ def plot_coeffs(C_arr, coefs, title):
     plt.xlabel('C')
     plt.ylabel('Коэффициенты (веса признаков)')
     plt.tight_layout()   # вычисляет оптимальные значения отступов между элементами
-    plt.savefig("images\\Coef.png")
+    plt.savefig(f"images\\Coef_{title}.png")
     plt.show()

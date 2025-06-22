@@ -11,7 +11,7 @@ svc_acc, svc_coefs = SVM(X_train = X_train, X_test = X_test, Y_train = Y_train, 
 
 plot_accuracy(C_arr, log_acc, svc_acc)
 plot_coeffs(C_arr, log_coefs, 'LogReg')
-plot_coeffs(C_arr, svc_coefs, 'LinSVC')
+plot_coeffs(C_arr, svc_coefs, 'SVM')
 
 print("Logistic Regression:")
 best_idx = np.argmax(log_acc)
