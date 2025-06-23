@@ -36,7 +36,9 @@ plt.savefig('lab_3\\images\\R.png')
 plt.show()
 
 loss = Cross_validation(X_test, y_test, weights, best_lambda)
+
 r=np.corrcoef(X_test.dot(weights),y_test)[0,1]
+best_coef = r**2
 
 plt.figure(figsize = (10, 5))
 plt.plot(best_Q)
@@ -48,7 +50,6 @@ plt.savefig('lab_3\\images\\q.png')
 plt.show()
 
 print("функция потерь:",loss)
-best_coef = r**2
 print("коэф. корр.",best_coef)
 print("регуляризатор",best_lambda)
 #print(weights)
