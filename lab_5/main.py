@@ -37,7 +37,7 @@ def main():
     plt.grid(True)
     plt.show()
 
-    print(f"Качество нормальное распр: {Q_gaus}")
-    print(f"Качество лапласовское распр: {Q_lapl}")
+    print(f"Качество нормальное распр: {Q_gaus :.2}")
+    print(f"Качество лапласовское распр: {Q_lapl :.2}")
 
 main()
