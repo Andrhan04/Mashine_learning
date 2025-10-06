@@ -20,6 +20,6 @@ py -m venv myvenv
 
 myvenv\Scripts\activate
 
-pip install numpy scikit-learn pandas sklearn
+pip install numpy scikit-learn pandas
 
 deactivate
