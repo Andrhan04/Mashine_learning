@@ -13,8 +13,6 @@ def main():
     M_lapl, B_lapl, prior_lapl, y_lapl = fit_laplace(X_train, y_train)
     pred_lapl = pred(X_test, M_lapl, B_lapl,prior_lapl, y_lapl, laplace)
     
-    
-    
     Q_gaus = f1_score(y_test, pred_gaus, average='macro')
     Q_lapl = f1_score(y_test, pred_lapl, average='macro')
 
@@ -23,6 +21,9 @@ def main():
     var_gaus = D_gaus[0][0]
     mu_lapl = M_lapl[0][0]
     b_lapl = B_lapl[0][0]
+
+    print(f"Качество лапласовское распр: {Q_lapl :.2}")
+    print(f"Качество нормальное распр: {Q_gaus :.2}")
 
     x_vals = np.linspace(min(plot_x) - 1, max(plot_x) + 1, 100)
     gaus = gaussian(x_vals, mu_gaus, var_gaus)
@@ -37,7 +38,5 @@ def main():
     plt.grid(True)
     plt.show()
 
-    print(f"Качество нормальное распр: {Q_gaus :.2}")
-    print(f"Качество лапласовское распр: {Q_lapl :.2}")
 
 main()
