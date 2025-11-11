@@ -12,7 +12,7 @@ y = np.array([[0], [1], [1], [0]])
 def build_model(activation, learning_rate):
     model = keras.Sequential([
         layers.Input(shape=(2,)),
-        layers.Dense(5, activation=activation, name='hidden_layer'),
+        layers.Dense(3, activation=activation, name='hidden_layer'),
         layers.Dense(1, activation='sigmoid', name='output_layer')
     ])
     optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
@@ -25,13 +25,13 @@ activations = ['relu', 'sigmoid', 'linear']
 
 histories = {}
 
-epochs = 300
+epochs = 500
 learning_rate = 0.01
 all_preds = {}
 for activation in activations:
-    model = build_model(activation, learning_rate)
+    model : keras.Sequential = build_model(activation, learning_rate)
     
-    history = model.fit(X, y, epochs=epochs, verbose=0)
+    history : keras.src.callbacks.history.History = model.fit(X, y, epochs=epochs, verbose=0)
     histories[activation] = history.history['loss']
     y_pred = model.predict(X)
     print(f"Activation: {activation}")
