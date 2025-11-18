@@ -20,6 +20,7 @@ def generate_ring(size_dataset=1000, test_size=0.2):
     # Делим на train / test
     return train_test_split(X_total, Y_total, test_size=test_size, random_state=42)
 
+<<<<<<< HEAD:lab_7/main.py
 
 
 def build_model():
@@ -49,6 +50,30 @@ def draw(data, label, X_train, Y_train):
 
 def main():
 		X_train, X_test, Y_train, Y_test = generate_ring()
+=======
+# --- параметры ---
+N = 500
+np.random.seed(42)
+
+def rgb_to_lab_hue(r, g, b):
+    rgb = np.array([[[r, g, b]]])  # Создание 3D тензора для skimage
+    lab = color.rgb2lab(rgb)       # Конвертация RGB → LAB
+    a, b_ = lab[0, 0, 1], lab[0, 0, 2]  # Извлечение компонент a и b
+    h = np.degrees(np.arctan2(b_, a)) % 360  # Вычисление угла (hue)
+    return h
+
+def label_by_hue(h):
+    if h <= 90 or h >= 330:  # Красные/желтые тона
+        return 1             # Теплые цвета
+    elif 150 <= h <= 270:    # Синие тона  
+        return 0             # Холодные цвета
+    else:                    # Зеленые/пурпурные
+        return None          # Нейтральные - исключаются
+
+def generate_color():
+	data_list = []
+	target_list = []
+>>>>>>> f48ff3b46836a00d1fb2a850678fc1eb8d39d891:lab_7/generate_data.py
 
 		model = build_model()
 		model.fit(X_train, Y_train, epochs=200, verbose=0)
@@ -72,7 +97,15 @@ def main():
 		draw(X_test, Y_test,X_train ,Y_train)
 		
 
+<<<<<<< HEAD:lab_7/main.py
 	
 
 if __name__ == "__main__":
 		main()
+=======
+generate_color()
+# Что такое LAB:
+# L — Lightness (яркость), от 0 (чёрный) до 100 (белый)
+# a — ось от зелёного (–a) к красному (+a)
+# b — ось от синего (–b) к жёлтому (+b)
+>>>>>>> f48ff3b46836a00d1fb2a850678fc1eb8d39d891:lab_7/generate_data.py
