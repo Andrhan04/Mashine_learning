@@ -39,7 +39,7 @@ def build_model(X_train, y_train, X_test, y_test):
     
     datagen.fit(X_train)
     
-    model = models.Sequential(                                              # Последовательная модель 
+    model = models.Sequential([                                              # Последовательная модель 
         layers.Conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)), # Сверточный слой
         layers.MaxPooling2D((2,2)),                                         # Пуллинговый слой
         layers.Conv2D(64, (3,3), activation='relu'),                        # Сверточный слой
@@ -49,17 +49,19 @@ def build_model(X_train, y_train, X_test, y_test):
         layers.Dense(64, activation='relu'),                                # Полносвязанный слой
         layers.Dropout(0.5),                                                # в каждом батче случайно отключается 50% нейронов
         layers.Dense(10, activation='softmax')                              # Вероятности для цифр
-    ) 
+    ]) 
     model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
     history = model.fit(X_train, y_train, epochs=10, batch_size=64, validation_data=(X_test, y_test))
     return model, history
     
 def traning_model():
     X_train, y_train, X_test_ev, y_test_ev, X_test, y_test = load_data()
-    model, history = build_model()
-    model.save(f"\models\\{model_name}.keras") # Сохранение модели
+    model, history = build_model(X_train, y_train, X_test, y_test)
+    model.save(f"my_models\\{model_name}.keras") # Сохранение модели
     test_loss, test_acc = model.evaluate(X_test_ev, y_test_ev) # Оценка обученной модели на тестовой выборке
     print(f'Точность на тестовой: {test_acc}, Потери на тестовой: {test_loss}')
     draw_dataset(X_train, y_train)
     draw_accuracy(history)
     draw_loss(history)
+
+traning_model()
