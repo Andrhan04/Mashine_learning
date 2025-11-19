@@ -51,7 +51,7 @@ def build_model(X_train, y_train, X_test, y_test):
         layers.Dense(10, activation='softmax')                              # Вероятности для цифр
     ]) 
     model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-    history = model.fit(X_train, y_train, epochs=10, batch_size=64, validation_data=(X_test, y_test))
+    history = model.fit(X_train, y_train, epochs=100, batch_size=64, validation_data=(X_test, y_test))
     return model, history
     
 def traning_model():
@@ -64,4 +64,4 @@ def traning_model():
     draw_accuracy(history)
     draw_loss(history)
 
-traning_model()
+#traning_model()

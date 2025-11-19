@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
-
+import keras
+import numpy as np
 
 def draw_dataset(X_train, y_train):
     # Как выглядит датасет
@@ -31,3 +32,31 @@ def draw_loss(history):
     plt.legend()
     plt.savefig('images\\loss')
     plt.show()
+
+from PIL import Image
+import os
+
+def save_images():
+    # Загружаем датасет
+    (X_train, y_train), (X_test, y_test) = keras.datasets.mnist.load_data()
+
+    # Создаем папку для сохранения изображений
+    os.makedirs('digits_images', exist_ok=True)
+
+    # Находим по одному примеру для каждой цифры (0-9)
+    for digit in range(10):
+        # Находим первый попавшийся индекс для текущей цифры
+        indices = np.where(y_train == digit)[0]
+        idx = indices[0]
+        
+        # Получаем изображение
+        image = X_train[idx]
+        
+        # Сохраняем как PNG файл
+        image_path = f'images/num_{digit}.png'
+        
+        # Используем PIL для сохранения
+        img = Image.fromarray(image.astype('uint8'))
+        img.save(image_path)
+        
+        print(f'Сохранено: {image_path}')
