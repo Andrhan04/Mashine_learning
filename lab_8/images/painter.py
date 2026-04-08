@@ -33,9 +33,12 @@ def draw_loss(history):
     plt.savefig('images\\loss')
     plt.show()
 
+
+
+
+
 from PIL import Image
 import os
-
 def save_images():
     # Загружаем датасет
     (X_train, y_train), (X_test, y_test) = keras.datasets.mnist.load_data()

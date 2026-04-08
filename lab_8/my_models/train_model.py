@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split # type: ignore
 from tensorflow.keras import layers, models # type: ignore
 from tensorflow.keras.preprocessing.image import ImageDataGenerator # type: ignore
-from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.utils import to_categorical # type: ignore
 from images.painter import draw_accuracy, draw_dataset, draw_loss
 
 
@@ -39,7 +39,7 @@ def build_model(X_train, y_train, X_test, y_test):
     
     datagen.fit(X_train)
     
-    model = models.Sequential([                                              # Последовательная модель 
+    model = models.Sequential([                                             # Последовательная модель 
         layers.Conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)), # Сверточный слой
         layers.MaxPooling2D((2,2)),                                         # Пуллинговый слой
         layers.Conv2D(64, (3,3), activation='relu'),                        # Сверточный слой

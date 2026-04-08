@@ -30,22 +30,14 @@ tf.autograph.set_verbosity(0)
 sys.stderr = original_stderr
 
 import os
-from tensorflow.keras.preprocessing import image
+from tensorflow.keras.preprocessing import image # type: ignore
 import numpy as np
-from tensorflow.keras.models import load_model
-from images.painter import save_images
+from tensorflow.keras.models import load_model # type: ignore
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1' # Отключаем GPU, чтобы TensorFlow работал только на CPU
 
 model_name = "example"
-degits_to_test = [1,2,3,4,5,6,7,8,9,0]
 def exist_file(file):
     return os.path.isfile(f"my_models\\{file}.keras")
-
-def exist_image():
-    for i in degits_to_test:
-        if(not os.path.isfile(f"images/num_{i}.png")):
-            return False
-    return True
 
 
 def main():
@@ -55,16 +47,13 @@ def main():
         traning_model()
         print("Модель обучена")
     else:
-        print("Load")
+        print("Модель уже есть, загружаю")
     model = load_model(f"my_models\\{model_name}.keras")
-    if(not exist_image()):
-        print("Создаём картинки")
-        save_images()
-    for deg in degits_to_test:
-        img = image.load_img(f'images/num_{deg}.png', target_size=(28,28), color_mode='grayscale')
-        x = image.img_to_array(img) / 255.0
-        x = x.reshape(1,28,28,1)
-        pred = model.predict(x)
-        print("Предсказанная цифра:", np.argmax(pred),' с вероятностью: ', pred[0][np.argmax(pred)])
+    
+    img = image.load_img(f'images/num_9.png', target_size=(28,28), color_mode='grayscale')
+    x = image.img_to_array(img) / 255.0
+    x = x.reshape(1,28,28,1)
+    pred = model.predict(x)
+    print("Предсказанная цифра:", np.argmax(pred),' с вероятностью: ', pred[0][np.argmax(pred)])
         
 main()
